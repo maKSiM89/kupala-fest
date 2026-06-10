@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# system files
+.DS_Store
+Thumbs.db
+
+# build output
+dist/
+build/
+
+# editor temporary files
+*.swp
+*.swo
+*.tmp
