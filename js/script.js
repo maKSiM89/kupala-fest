@@ -177,7 +177,59 @@ const galleryTrack = document.querySelector(".gallery-grid");
 const slides = document.querySelectorAll(".gallery-grid img");
 const prevBtn = document.querySelector(".gallery-prev");
 const nextBtn = document.querySelector(".gallery-next");
+const dotsContainer = document.querySelector(".gallery-dots");
 let currentSlide = 0;
+let scrollTimer;
+
+function updateDots() {
+  if (!dotsContainer) return;
+  dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
+}
+
+function createDots() {
+  if (!dotsContainer || !slides.length) return;
+
+  dotsContainer.innerHTML = "";
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "gallery-dot";
+    dot.setAttribute("aria-label", `Фото ${index + 1}`);
+    dot.addEventListener("click", () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  updateDots();
+}
+
+function getClosestSlideIndex() {
+  if (!galleryTrack) return 0;
+
+  const trackCenter =
+    galleryTrack.getBoundingClientRect().left + galleryTrack.getBoundingClientRect().width / 2;
+  let closestIndex = 0;
+  let closestDistance = Infinity;
+
+  slides.forEach((slide, index) => {
+    const slideCenter =
+      slide.getBoundingClientRect().left + slide.getBoundingClientRect().width / 2;
+    const distance = Math.abs(trackCenter - slideCenter);
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = index;
+    }
+  });
+
+  return closestIndex;
+}
+
+function setCurrentSlide(index) {
+  currentSlide = index;
+  updateDots();
+}
 
 function goToSlide(index) {
   if (!slides[index]) return;
@@ -188,7 +240,21 @@ function goToSlide(index) {
     block: "nearest"
   });
 
-  currentSlide = index;
+  setCurrentSlide(index);
+}
+
+function handleGalleryScroll() {
+  if (!galleryTrack) return;
+
+  clearTimeout(scrollTimer);
+  scrollTimer = window.setTimeout(() => {
+    setCurrentSlide(getClosestSlideIndex());
+  }, 120);
+}
+
+if (galleryTrack && slides.length) {
+  createDots();
+  galleryTrack.addEventListener("scroll", handleGalleryScroll);
 }
 
 if (galleryTrack && slides.length && prevBtn && nextBtn) {
