@@ -80,7 +80,7 @@ animatedElements.forEach((el) => {
 
     82500
 */
-const collectedAmount = 102300.5;
+const collectedAmount = 137062.05;
 const targetAmount = 200000;
 const progressPercent = Math.min(Math.round((collectedAmount / targetAmount) * 100), 100);
 const fernProgress = document.querySelector(".fern-progress");
