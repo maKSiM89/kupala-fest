@@ -80,7 +80,7 @@ animatedElements.forEach((el) => {
 
     82500
 */
-const collectedAmount = 324000;
+const collectedAmount = 328092;
 const targetAmount = 200000;
 const actualPercent = Math.round((collectedAmount / targetAmount) * 100);
 const progressPercent = Math.min(actualPercent, 100);
