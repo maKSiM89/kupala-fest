@@ -413,6 +413,7 @@ section {
 .charity-section {
   background: linear-gradient(180deg, #173d3d, #0f2b29);
   color: white;
+  padding-top: 30px;
 }
 
 .charity-section h2 {
