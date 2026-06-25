@@ -411,7 +411,7 @@ section {
 =================================== */
 
 .charity-section {
-  background: linear-gradient(rgb(23 61 61 / 95%), rgb(23 61 61 / 95%));
+  background: linear-gradient(180deg, #173d3d, #0f2b29);
   color: white;
 }
 
@@ -419,12 +419,70 @@ section {
   color: white;
 }
 
-.charity-section p {
+.charity-panel {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 30px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.charity-panel-copy {
+  max-width: 620px;
+}
+
+.charity-panel-copy p {
+  text-align: left;
+  color: #e5f8ea;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.charity-panel-stats {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  padding: 32px 28px;
   text-align: center;
+  box-shadow: 0 20px 35px rgb(0 0 0 / 18%);
+}
+
+.charity-amount-note {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.charity-amount {
+  font-family: "Uncial Antiqua", serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.92;
+  color: #ffe58a;
+  margin-bottom: 20px;
+}
+
+.charity-meta {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: #d8f7d6;
+  font-size: 1rem;
+}
+
+.charity-meta span {
+  display: block;
+}
+
+.charity-cta {
+  width: 100%;
 }
 
 .charity-section blockquote {
-  margin: 40px auto;
+  margin: 40px auto 0;
   max-width: 800px;
   text-align: center;
   font-size: 1.4rem;
@@ -980,6 +1038,14 @@ section {
 
   .hero-subtitle {
     font-size: 1.1rem;
+  }
+
+  .charity-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .charity-panel-copy p {
+    text-align: center;
   }
 }
 

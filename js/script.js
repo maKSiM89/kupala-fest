@@ -82,9 +82,17 @@ animatedElements.forEach((el) => {
 */
 const collectedAmount = 324000;
 const targetAmount = 200000;
-const progressPercent = Math.min(Math.round((collectedAmount / targetAmount) * 100), 100);
+const actualPercent = Math.round((collectedAmount / targetAmount) * 100);
+const progressPercent = Math.min(actualPercent, 100);
 const fernProgress = document.querySelector(".fern-progress");
 const fernValue = document.querySelector(".fern-progress-value");
+const charityAmount = document.querySelector(".charity-amount");
+const charityTargetValue = document.querySelector(".charity-target-value");
+const charityPercent = document.querySelector(".charity-percent");
+
+function formatCurrency(value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " грн";
+}
 
 if (fernProgress) {
   fernProgress.style.setProperty("--progress", `${progressPercent}%`);
@@ -92,6 +100,18 @@ if (fernProgress) {
 
 if (fernValue) {
   fernValue.textContent = `${progressPercent}%`;
+}
+
+if (charityAmount) {
+  charityAmount.textContent = formatCurrency(collectedAmount);
+}
+
+if (charityTargetValue) {
+  charityTargetValue.textContent = formatCurrency(targetAmount);
+}
+
+if (charityPercent) {
+  charityPercent.textContent = `${actualPercent}%`;
 }
 
 /* ==================================
